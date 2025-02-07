@@ -1,0 +1,26 @@
+services:
+  petclinic:
+    image: maven-petclinic:v2
+    ports:
+      - "8080:8080"
+    pull_policy: never
+
+  postgres:
+    image: postgres:17.0
+    ports:
+      - "5432:5432"
+    secrets: 
+      - postgres_user
+      - postgres_password
+    environment:
+      - POSTGRES_PASSWORD=/run/secrets/postgres_password
+      - POSTGRES_USER=/run/secrets/postgres_user
+      - POSTGRES_DB=petclinic
+    depends_on:
+      - petclinic
+
+secrets:
+  postgres_user:
+    file: ./postgres_user.txt
+  postgres_password:
+    file: ./postgres_password.txt
