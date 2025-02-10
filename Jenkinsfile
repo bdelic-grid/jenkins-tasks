@@ -6,6 +6,13 @@ node {
     }
 
     stage("Build image") {
-        app = docker.build("petclinic")
+        app = docker.build("bole1709/main/petclinic")
+    }
+
+    stage("Push image") {
+        docker.withRegistry("https://registry.hub.docker.com", "docker_hub_credentials") {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+        }
     }
 }
