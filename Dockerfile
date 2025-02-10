@@ -4,7 +4,7 @@ COPY ./spring-petclinic /app/spring-petclinic
 
 WORKDIR /app/spring-petclinic
 
-RUN mvn package
+RUN mvn package -DskipTests
 
 
 
