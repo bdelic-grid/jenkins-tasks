@@ -6,7 +6,7 @@ node {
     }
 
     stage("Build image") {
-        app = docker.build("bole1709/main/petclinic")
+        app = docker.build("bole1709/main")
     }
 
     stage("Push image") {
