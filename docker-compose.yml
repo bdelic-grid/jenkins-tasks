@@ -17,23 +17,26 @@ services:
     command: --storage-driver overlay2
 
   jenkins-master:
-    image: jenkins-blueocean
+    image: jenkins-blueocean:v1
     container_name: jenkins-master
     restart: on-failure
     networks:
       jenkins:
         aliases:
-          - docker  # This also sets the alias for the 'jenkins-blueocean' service (same network)
+          - docker
 
     volumes:
       - jenkins-data:/var/jenkins_home
     
     ports:
+      - "22:22"
+      - "80:80"
+      - "443:443"
       - "8080:8080"
       - "50000:50000"
   
   jenkins-agent:
-    image: jenkins-blueocean
+    image: jenkins-blueocean:v1
     container_name: jenkins-agent1
     restart: on-failure
     networks:
