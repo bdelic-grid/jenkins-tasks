@@ -5,7 +5,7 @@ node("agent1") {
         checkout scm
     }
 
-    if(env.GIT_BRANCH == "main") {
+    if(env.BRANCH_NAME == "main") {
         stage("Build image") {
             app = docker.build("bole1709/main")
         }
