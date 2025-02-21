@@ -2,10 +2,11 @@ node("agent1") {
     def app
     def gitCommitShort
 
-    if(env.GIT_BRANCH == "main") {
-        stage("Clone repository") {
+    stage("Clone repository") {
             checkout scm
-        }
+    }
+
+    if(env.GIT_BRANCH == "main") {
 
         stage("Build image") {
             app = docker.build("bole1709/main")
