@@ -1,6 +1,5 @@
 node("agent1") {
     def app
-    def gitCommitShort
 
     stage("Clone repository") {
             checkout scm
