@@ -15,7 +15,6 @@ pipeline {
                 }
             }
         }
-
         stage("Test") {
             when {
                 changeRequest()  
