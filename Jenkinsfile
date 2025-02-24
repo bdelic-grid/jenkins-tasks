@@ -7,10 +7,12 @@ pipeline {
                 changeRequest() 
             }
             steps {
-                script {
-                    sh "mvn checkstyle:checkstyle"
+                dir("./spring-petclinic") {
+                    script {
+                        sh "./mvnw checkstyle:checkstyle"
+                    }
+                    archiveArtifacts artifacts: "checkstyle-result.xml"
                 }
-                archiveArtifacts artifacts: "./spring-petclinic/checkstyle-result.xml"
             }
         }
 
@@ -19,8 +21,10 @@ pipeline {
                 changeRequest()  
             }
             steps {
-                script {
-                    sh "mvn test"
+                dir("./spring-petclinic") {
+                    script {
+                        sh "./mvnw test"
+                    }
                 }
             }
         }
@@ -30,8 +34,10 @@ pipeline {
                 changeRequest()  
             }
             steps {
-                script {
-                    sh "mvn clean build"
+                dir("./spring-petclinic") {
+                    script {
+                        sh "./mvnw clean build"
+                    }
                 }
             }
         }
