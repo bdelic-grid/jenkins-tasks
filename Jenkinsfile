@@ -15,6 +15,7 @@ pipeline {
                 }
             }
         }
+
         stage("Test") {
             when {
                 changeRequest()  
@@ -35,7 +36,7 @@ pipeline {
             steps {
                 dir("./spring-petclinic") {
                     script {
-                        sh "./mvnw clean build"
+                        sh "./mvnw clean install"
                     }
                 }
             }
