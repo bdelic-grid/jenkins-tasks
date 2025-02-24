@@ -13,7 +13,6 @@ pipeline {
                 archiveArtifacts artifacts: "./spring-petclinic/checkstyle-result.xml"
             }
         }
-
         stage("Test") {
             when {
                 changeRequest()  
